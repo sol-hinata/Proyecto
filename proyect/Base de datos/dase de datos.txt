@@ -1,0 +1,255 @@
+CREATE TABLE indice ( 
+	idIndice int identity(1,1)  NOT NULL,
+	nombre varchar(50) NOT NULL,
+	url varchar(100) NOT NULL,
+	idPublicacion int NOT NULL,
+	fecha datetime NOT NULL
+)
+;
+
+CREATE TABLE publicacion_categoria ( 
+	idCategoria int NOT NULL,
+	idPublicacion int NOT NULL
+)
+;
+
+CREATE TABLE categoria ( 
+	idCategoria int identity(1,1)  NOT NULL,
+	nombre varchar(50) NOT NULL,
+	estado bit NOT NULL,
+	fecha datetime NOT NULL
+)
+;
+
+CREATE TABLE karma ( 
+	UserId uniqueidentifier NOT NULL,
+	idKarma int identity(1,1)  NOT NULL,
+	detalle varchar(100) NOT NULL,
+	total float NOT NULL,
+	fecha datetime NOT NULL
+)
+;
+
+CREATE TABLE comentario ( 
+	idComentario int identity(1,1)  NOT NULL,
+	idPublicacion int NOT NULL,
+	Descripcion varchar(500) NOT NULL,
+	puntuacion float NOT NULL,
+	fecha datetime NOT NULL
+)
+;
+
+CREATE TABLE archivo ( 
+	idArchivo int identity(1,1)  NOT NULL,
+	UserId uniqueidentifier NOT NULL,
+	imagen image NOT NULL,
+	fecha datetime NOT NULL
+)
+;
+
+
+CREATE TABLE reporte ( 
+	idReporte int identity(1,1)  NOT NULL,
+	idPublica int NOT NULL,
+	descripcion varchar(100) NOT NULL,
+	fecha datetime NOT NULL
+)
+;
+
+CREATE TABLE curso ( 
+	idCurso int identity(1,1)  NOT NULL,
+	idPublicacion int NOT NULL,
+	titulo varchar(50) NOT NULL,
+	fecha datetime NOT NULL,
+	detalle varbinary(1000) NOT NULL,
+	puntuacion int NOT NULL
+)
+;
+
+CREATE TABLE articulo ( 
+	idArticulo int identity(1,1)  NOT NULL,
+	titulo varchar(50) NOT NULL,
+	fecha datetime NOT NULL,
+	detalle varbinary(1000) NOT NULL,
+	puntuacion int NOT NULL,
+	idPublicacion int NOT NULL
+)
+;
+
+CREATE TABLE tutorial ( 
+	idTutorial int identity(1,1)  NOT NULL,
+	idPublicacion int NOT NULL,
+	titulo varchar(50) NOT NULL,
+	fecha datetime NOT NULL,
+	detalle varbinary(1000) NOT NULL,
+	puntuacion int NOT NULL
+)
+;
+
+CREATE TABLE libro ( 
+	idLibro int identity(1,1)  NOT NULL,
+	idPublicacion int NOT NULL,
+	titulo varchar(50) NOT NULL,
+	fecha datetime NOT NULL,
+	detalle varbinary(1000) NOT NULL,
+	puntuacion int NOT NULL
+)
+;
+
+CREATE TABLE publicacion ( 
+	idPublicacion int identity(1,1)  NOT NULL,
+	UserId uniqueidentifier,
+	estado bit NOT NULL,
+	fecha datetime NOT NULL
+)
+;
+
+CREATE TABLE karma2 ( 
+	UserId uniqueidentifier NOT NULL,
+	idPublicacion int NOT NULL
+)
+;
+
+CREATE TABLE perfil ( 
+	idPerfil int identity(1,1)  NOT NULL,
+	nombre varchar(100),
+	apellido varchar(100),
+	apellidom varchar(100),
+	ubicacion varchar(100),
+	intereses varchar(500),
+	avatar image,
+	url varchar(500),
+	fecha datetime NOT NULL,
+	UserId uniqueidentifier NOT NULL
+)
+;
+
+
+
+
+
+
+
+ALTER TABLE indice ADD CONSTRAINT PK_indice 
+	PRIMARY KEY CLUSTERED (idIndice)
+;
+
+ALTER TABLE categoria ADD CONSTRAINT PK_categoria 
+	PRIMARY KEY CLUSTERED (idCategoria)
+;
+
+ALTER TABLE karma ADD CONSTRAINT PK_karma 
+	PRIMARY KEY CLUSTERED (idKarma)
+;
+
+ALTER TABLE comentario ADD CONSTRAINT PK_comentarios 
+	PRIMARY KEY CLUSTERED (idComentario)
+;
+
+ALTER TABLE archivo ADD CONSTRAINT PK_Archivo 
+	PRIMARY KEY CLUSTERED (idArchivo)
+;
+
+ALTER TABLE reporte ADD CONSTRAINT PK_reportes 
+	PRIMARY KEY CLUSTERED (idReporte)
+;
+
+ALTER TABLE curso ADD CONSTRAINT PK_cursos 
+	PRIMARY KEY CLUSTERED (idCurso)
+;
+
+ALTER TABLE articulo ADD CONSTRAINT PK_articulo 
+	PRIMARY KEY CLUSTERED (idArticulo)
+;
+
+ALTER TABLE tutorial ADD CONSTRAINT PK_tutoriales 
+	PRIMARY KEY CLUSTERED (idTutorial)
+;
+
+ALTER TABLE libro ADD CONSTRAINT PK_libros 
+	PRIMARY KEY CLUSTERED (idLibro)
+;
+
+ALTER TABLE publicacion ADD CONSTRAINT PK_publicacion 
+	PRIMARY KEY CLUSTERED (idPublicacion)
+;
+ALTER TABLE perfil ADD CONSTRAINT PK_perfil 
+	PRIMARY KEY CLUSTERED (idPerfil)
+;
+
+
+
+ALTER TABLE indice ADD CONSTRAINT FK_indice_publicacion 
+	FOREIGN KEY (idPublicacion) REFERENCES publicacion (idPublicacion)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+ALTER TABLE publicacion_categoria ADD CONSTRAINT FK_publicacion_categoria_categoria 
+	FOREIGN KEY (idCategoria) REFERENCES categoria (idCategoria)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+ALTER TABLE publicacion_categoria ADD CONSTRAINT FK_publicacion_categoria_publicacion 
+	FOREIGN KEY (idPublicacion) REFERENCES publicacion (idPublicacion)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+ALTER TABLE karma ADD CONSTRAINT FK_karma_usuario 
+	FOREIGN KEY (UserId) REFERENCES aspnet_Users (UserId)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+ALTER TABLE comentario ADD CONSTRAINT FK_comentarios_publicacion 
+	FOREIGN KEY (idPublicacion) REFERENCES publicacion (idPublicacion)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+ALTER TABLE archivo ADD CONSTRAINT FK_Archivo_usuario 
+	FOREIGN KEY (UserId) REFERENCES aspnet_Users (UserId)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+
+ALTER TABLE reporte ADD CONSTRAINT FK_reportes_publicacion 
+	FOREIGN KEY (idPublica) REFERENCES publicacion (idPublicacion)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+ALTER TABLE curso ADD CONSTRAINT FK_cursos_publicacion 
+	FOREIGN KEY (idPublicacion) REFERENCES publicacion (idPublicacion)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+ALTER TABLE articulo ADD CONSTRAINT FK_articulo_publicacion 
+	FOREIGN KEY (idPublicacion) REFERENCES publicacion (idPublicacion)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+ALTER TABLE tutorial ADD CONSTRAINT FK_tutoriales_publicacion 
+	FOREIGN KEY (idPublicacion) REFERENCES publicacion (idPublicacion)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+ALTER TABLE libro ADD CONSTRAINT FK_libros_publicacion 
+	FOREIGN KEY (idPublicacion) REFERENCES publicacion (idPublicacion)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+
+/*ALTER TABLE publicacion ADD CONSTRAINT FK_publicacion_usuario 
+	FOREIGN KEY (UserId) REFERENCES aspnet_Users (UserId)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+*/
+
+ALTER TABLE karma2 ADD CONSTRAINT FK_karma2_publicacion 
+	FOREIGN KEY (idPublicacion) REFERENCES publicacion (idPublicacion)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+ALTER TABLE karma2 ADD CONSTRAINT FK_karma2_aspnet_Users 
+	FOREIGN KEY (UserId) REFERENCES aspnet_Users (UserId)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;
+ALTER TABLE perfil ADD CONSTRAINT FK_perfil_aspnet_Users
+	FOREIGN KEY (UserId) REFERENCES aspnet_Users (UserId)
+	ON DELETE CASCADE ON UPDATE CASCADE
+;

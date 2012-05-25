@@ -1,0 +1,9 @@
+D:\PROYECTO FINAL\proyect\proyect\bin\proyect.dll
+D:\PROYECTO FINAL\proyect\proyect\bin\proyect.pdb
+D:\PROYECTO FINAL\proyect\proyect\bin\EntityFramework.dll
+D:\PROYECTO FINAL\proyect\proyect\bin\EntityFramework.xml
+D:\PROYECTO FINAL\proyect\proyect\obj\Debug\ResolveAssemblyReference.cache
+D:\PROYECTO FINAL\proyect\proyect\obj\Debug\proyect.dll
+D:\PROYECTO FINAL\proyect\proyect\obj\Debug\proyect.pdb
+D:\PROYECTO FINAL\proyect\proyect\bin\BotDetect.dll
+D:\PROYECTO FINAL\proyect\proyect\bin\BotDetect.Web.UI.Mvc.dll
