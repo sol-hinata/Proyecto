@@ -27,4 +27,15 @@ namespace proyect.Models
         public int idPublicacion { get; set; }
 
     }
+    public class verarticulo {
+        public int idArticulo { get; set; }
+        public string titulo { get; set; }
+        [UIHint("tinymce_jquery_full"), AllowHtml]
+        public string detalle { get; set; }
+        public System.DateTime fecha { get; set; }
+        public int idPublicacion { get; set; }
+        public System.Guid id { get; set; }
+        public List<aspnet_User> nombre { get; set; }
+ 
+    }
 }

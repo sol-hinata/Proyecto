@@ -1,5 +1,21 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model proyect.Models.Articulo
+@{
+    ViewBag.Title = "Articulos";
 }
+<h2>Lista de Articulos</h2> 
+<ul>  
+     @foreach (var item in @ViewBag.lista)
+     { 
+         <div id="maincontenidoContenidoArticulo">
+     <li>
+       <h2>@item.titulo</h2>@item.detalle<br />
+       @foreach (var i in @item.nombre) { 
+       <li><h3>Subido por: @i.UserName</h3></li>
+       }
+       <h3>el: @item.fecha</h3>
+     </li>
+         </div><br /><br />
+     }       
+  
+</ul>
 
-<h2>Index</h2>

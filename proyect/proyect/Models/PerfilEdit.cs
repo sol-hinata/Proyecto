@@ -8,12 +8,18 @@ namespace proyect.Models
     public class PerfilEdit
     {
         public int idPerfil { get; set; }
+        public int idAvatar { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string apellidom { get; set; }
         public string interes { get; set; }
         public string ubicacion { get; set; }
-        public string nomb_avatar { get; set; }
+        public System.DateTime fecha { get; set; }
+        public System.Guid id { get; set; }
+    }
+    public class Avatar
+    {
+        public int idAvatar { get; set; }
         public string rutafisica { get; set; }
         public string rutavirtual { get; set; }
         public System.DateTime fecha { get; set; }

@@ -1,0 +1,45 @@
+﻿@model proyect.Models.Articulo
+@{
+    ViewBag.Title = "Se envio tu Publicacion";
+}
+
+<h2>Publicacion</h2>
+@using (Html.BeginForm())
+{ 
+    <div>
+    <fieldset>
+    <legend>ingresa tu articulo</legend>
+    <div class="show-label">
+    @Html.LabelFor(m => m.titulo)
+    </div>
+    <div class="show-field">
+    @Html.TextBoxFor(m => m.titulo)
+    </div>
+    
+    <div class="show-label">
+    @Html.LabelFor(m => m.puntuacion)
+    </div>
+    <div class="show-field">
+    @Html.TextBoxFor(m => m.puntuacion)
+        
+    </div>
+
+    <div>
+    
+    $("tinymceId").Val()
+    </div>
+    <textarea name="content" rows="1" cols="50" style="width:100%;"  ></textarea>
+    
+    <div class="article-content">
+   
+   @ViewBag.detalle
+    @Html.EditorFor(m => m.detalle)
+
+    </div>
+    </fieldset>
+    </div>
+
+   
+
+
+}

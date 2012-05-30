@@ -49,6 +49,7 @@ namespace proyect.Controllers
                 }
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
+                    
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -67,7 +68,7 @@ namespace proyect.Controllers
                         DataClasses1DataContext db = new DataClasses1DataContext();
                         aspnet_User data = db.aspnet_Users.Where(a => a.UserName == model.UserName).ToArray()[0];
                         Session["ids"] = data.UserId;
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Publicacion");
                                     
                         
                     }
@@ -135,7 +136,7 @@ namespace proyect.Controllers
                     
 
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Publicacion");
                 }
                 else
                 {

@@ -1,0 +1,41 @@
+﻿@model proyect.Models.Articulo
+
+@{
+    ViewBag.Title = "mostrar";
+}
+
+<h2>mostrar</h2>
+<h2>Publicacion</h2>
+ @using (Html.BeginForm())
+ { 
+    <div>
+    <fieldset>
+    <legend>lista de articulos</legend>
+    
+    <div class="show-label">
+    @Html.LabelFor(m => m.titulo)
+    </div>
+    <div class="show-field">
+    @Html.TextBoxFor(m => m.titulo)
+    </div>
+     <div class="show-label">
+    @Html.LabelFor(m => m.fecha)
+    </div>
+    <div class="show-field">
+    @Html.TextBoxFor(m => m.fecha)
+    </div>
+    
+    <div class="show-label">
+    @Html.LabelFor(m => m.puntuacion)
+    </div>
+    <div class="show-field">
+    @Html.TextBoxFor(m => m.puntuacion)
+    </div>
+    <div class="article-content">
+   
+    @Html.EditorFor(m => m.detalle)
+
+    </div>
+    </fieldset>
+    </div>
+}

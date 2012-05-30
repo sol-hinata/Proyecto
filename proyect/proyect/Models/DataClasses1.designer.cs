@@ -69,6 +69,9 @@ namespace proyect.Models
     partial void Insertaspnet_WebEvent_Event(aspnet_WebEvent_Event instance);
     partial void Updateaspnet_WebEvent_Event(aspnet_WebEvent_Event instance);
     partial void Deleteaspnet_WebEvent_Event(aspnet_WebEvent_Event instance);
+    partial void Insertavatar(avatar instance);
+    partial void Updateavatar(avatar instance);
+    partial void Deleteavatar(avatar instance);
     partial void Insertcategoria(categoria instance);
     partial void Updatecategoria(categoria instance);
     partial void Deletecategoria(categoria instance);
@@ -235,6 +238,14 @@ namespace proyect.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<avatar> avatars
+		{
+			get
+			{
+				return this.GetTable<avatar>();
+			}
+		}
+		
 		public System.Data.Linq.Table<categoria> categorias
 		{
 			get
@@ -340,9 +351,7 @@ namespace proyect.Models
 		
 		private int _idArchivo;
 		
-		private System.Guid _UserId;
-		
-		private string _nombre;
+		private int _idPublicacion;
 		
 		private string _rutafisica;
 		
@@ -350,7 +359,7 @@ namespace proyect.Models
 		
 		private System.DateTime _fecha;
 		
-		private EntityRef<aspnet_User> _aspnet_User;
+		private EntityRef<publicacion> _publicacion;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -358,10 +367,8 @@ namespace proyect.Models
     partial void OnCreated();
     partial void OnidArchivoChanging(int value);
     partial void OnidArchivoChanged();
-    partial void OnUserIdChanging(System.Guid value);
-    partial void OnUserIdChanged();
-    partial void OnnombreChanging(string value);
-    partial void OnnombreChanged();
+    partial void OnidPublicacionChanging(int value);
+    partial void OnidPublicacionChanged();
     partial void OnrutafisicaChanging(string value);
     partial void OnrutafisicaChanged();
     partial void OnrutavirtualChanging(string value);
@@ -372,7 +379,7 @@ namespace proyect.Models
 		
 		public archivo()
 		{
-			this._aspnet_User = default(EntityRef<aspnet_User>);
+			this._publicacion = default(EntityRef<publicacion>);
 			OnCreated();
 		}
 		
@@ -396,46 +403,26 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid UserId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPublicacion", DbType="Int NOT NULL")]
+		public int idPublicacion
 		{
 			get
 			{
-				return this._UserId;
+				return this._idPublicacion;
 			}
 			set
 			{
-				if ((this._UserId != value))
+				if ((this._idPublicacion != value))
 				{
-					if (this._aspnet_User.HasLoadedOrAssignedValue)
+					if (this._publicacion.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnUserIdChanging(value);
+					this.OnidPublicacionChanging(value);
 					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="VarChar(200)")]
-		public string nombre
-		{
-			get
-			{
-				return this._nombre;
-			}
-			set
-			{
-				if ((this._nombre != value))
-				{
-					this.OnnombreChanging(value);
-					this.SendPropertyChanging();
-					this._nombre = value;
-					this.SendPropertyChanged("nombre");
-					this.OnnombreChanged();
+					this._idPublicacion = value;
+					this.SendPropertyChanged("idPublicacion");
+					this.OnidPublicacionChanged();
 				}
 			}
 		}
@@ -480,7 +467,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -500,36 +487,36 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_User_archivo", Storage="_aspnet_User", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
-		public aspnet_User aspnet_User
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="publicacion_archivo", Storage="_publicacion", ThisKey="idPublicacion", OtherKey="idPublicacion", IsForeignKey=true)]
+		public publicacion publicacion
 		{
 			get
 			{
-				return this._aspnet_User.Entity;
+				return this._publicacion.Entity;
 			}
 			set
 			{
-				aspnet_User previousValue = this._aspnet_User.Entity;
+				publicacion previousValue = this._publicacion.Entity;
 				if (((previousValue != value) 
-							|| (this._aspnet_User.HasLoadedOrAssignedValue == false)))
+							|| (this._publicacion.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._aspnet_User.Entity = null;
+						this._publicacion.Entity = null;
 						previousValue.archivos.Remove(this);
 					}
-					this._aspnet_User.Entity = value;
+					this._publicacion.Entity = value;
 					if ((value != null))
 					{
 						value.archivos.Add(this);
-						this._UserId = value.UserId;
+						this._idPublicacion = value.idPublicacion;
 					}
 					else
 					{
-						this._UserId = default(System.Guid);
+						this._idPublicacion = default(int);
 					}
-					this.SendPropertyChanged("aspnet_User");
+					this.SendPropertyChanged("publicacion");
 				}
 			}
 		}
@@ -639,7 +626,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -2830,8 +2817,6 @@ namespace proyect.Models
 		
 		private System.DateTime _LastActivityDate;
 		
-		private EntitySet<archivo> _archivos;
-		
 		private EntityRef<aspnet_Membership> _aspnet_Membership;
 		
 		private EntitySet<aspnet_PersonalizationPerUser> _aspnet_PersonalizationPerUsers;
@@ -2872,7 +2857,6 @@ namespace proyect.Models
 		
 		public aspnet_User()
 		{
-			this._archivos = new EntitySet<archivo>(new Action<archivo>(this.attach_archivos), new Action<archivo>(this.detach_archivos));
 			this._aspnet_Membership = default(EntityRef<aspnet_Membership>);
 			this._aspnet_PersonalizationPerUsers = new EntitySet<aspnet_PersonalizationPerUser>(new Action<aspnet_PersonalizationPerUser>(this.attach_aspnet_PersonalizationPerUsers), new Action<aspnet_PersonalizationPerUser>(this.detach_aspnet_PersonalizationPerUsers));
 			this._aspnet_Profile = default(EntityRef<aspnet_Profile>);
@@ -3026,19 +3010,6 @@ namespace proyect.Models
 					this.SendPropertyChanged("LastActivityDate");
 					this.OnLastActivityDateChanged();
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_User_archivo", Storage="_archivos", ThisKey="UserId", OtherKey="UserId")]
-		public EntitySet<archivo> archivos
-		{
-			get
-			{
-				return this._archivos;
-			}
-			set
-			{
-				this._archivos.Assign(value);
 			}
 		}
 		
@@ -3230,18 +3201,6 @@ namespace proyect.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_archivos(archivo entity)
-		{
-			this.SendPropertyChanging();
-			entity.aspnet_User = this;
-		}
-		
-		private void detach_archivos(archivo entity)
-		{
-			this.SendPropertyChanging();
-			entity.aspnet_User = null;
 		}
 		
 		private void attach_aspnet_PersonalizationPerUsers(aspnet_PersonalizationPerUser entity)
@@ -3883,6 +3842,205 @@ namespace proyect.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.avatar")]
+	public partial class avatar : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idAvatar;
+		
+		private int _idPerfil;
+		
+		private string _rutafisica;
+		
+		private string _rutavirtual;
+		
+		private System.DateTime _fecha;
+		
+		private EntityRef<perfil> _perfil;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidAvatarChanging(int value);
+    partial void OnidAvatarChanged();
+    partial void OnidPerfilChanging(int value);
+    partial void OnidPerfilChanged();
+    partial void OnrutafisicaChanging(string value);
+    partial void OnrutafisicaChanged();
+    partial void OnrutavirtualChanging(string value);
+    partial void OnrutavirtualChanged();
+    partial void OnfechaChanging(System.DateTime value);
+    partial void OnfechaChanged();
+    #endregion
+		
+		public avatar()
+		{
+			this._perfil = default(EntityRef<perfil>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idAvatar", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idAvatar
+		{
+			get
+			{
+				return this._idAvatar;
+			}
+			set
+			{
+				if ((this._idAvatar != value))
+				{
+					this.OnidAvatarChanging(value);
+					this.SendPropertyChanging();
+					this._idAvatar = value;
+					this.SendPropertyChanged("idAvatar");
+					this.OnidAvatarChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idPerfil", DbType="Int NOT NULL")]
+		public int idPerfil
+		{
+			get
+			{
+				return this._idPerfil;
+			}
+			set
+			{
+				if ((this._idPerfil != value))
+				{
+					if (this._perfil.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidPerfilChanging(value);
+					this.SendPropertyChanging();
+					this._idPerfil = value;
+					this.SendPropertyChanged("idPerfil");
+					this.OnidPerfilChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rutafisica", DbType="VarChar(250)")]
+		public string rutafisica
+		{
+			get
+			{
+				return this._rutafisica;
+			}
+			set
+			{
+				if ((this._rutafisica != value))
+				{
+					this.OnrutafisicaChanging(value);
+					this.SendPropertyChanging();
+					this._rutafisica = value;
+					this.SendPropertyChanged("rutafisica");
+					this.OnrutafisicaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rutavirtual", DbType="VarChar(250)")]
+		public string rutavirtual
+		{
+			get
+			{
+				return this._rutavirtual;
+			}
+			set
+			{
+				if ((this._rutavirtual != value))
+				{
+					this.OnrutavirtualChanging(value);
+					this.SendPropertyChanging();
+					this._rutavirtual = value;
+					this.SendPropertyChanged("rutavirtual");
+					this.OnrutavirtualChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
+		public System.DateTime fecha
+		{
+			get
+			{
+				return this._fecha;
+			}
+			set
+			{
+				if ((this._fecha != value))
+				{
+					this.OnfechaChanging(value);
+					this.SendPropertyChanging();
+					this._fecha = value;
+					this.SendPropertyChanged("fecha");
+					this.OnfechaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="perfil_avatar", Storage="_perfil", ThisKey="idPerfil", OtherKey="idPerfil", IsForeignKey=true)]
+		public perfil perfil
+		{
+			get
+			{
+				return this._perfil.Entity;
+			}
+			set
+			{
+				perfil previousValue = this._perfil.Entity;
+				if (((previousValue != value) 
+							|| (this._perfil.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._perfil.Entity = null;
+						previousValue.avatars.Remove(this);
+					}
+					this._perfil.Entity = value;
+					if ((value != null))
+					{
+						value.avatars.Add(this);
+						this._idPerfil = value.idPerfil;
+					}
+					else
+					{
+						this._idPerfil = default(int);
+					}
+					this.SendPropertyChanged("perfil");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.categoria")]
 	public partial class categoria : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3976,7 +4134,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -4172,7 +4330,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -4389,7 +4547,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -4628,7 +4786,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -4827,7 +4985,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -5055,7 +5213,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -5188,15 +5346,11 @@ namespace proyect.Models
 		
 		private string _intereses;
 		
-		private string _nomb_avatar;
-		
-		private string _rutafisica;
-		
-		private string _rutavirtual;
-		
 		private System.DateTime _fecha;
 		
 		private System.Guid _UserId;
+		
+		private EntitySet<avatar> _avatars;
 		
 		private EntityRef<aspnet_User> _aspnet_User;
 		
@@ -5216,12 +5370,6 @@ namespace proyect.Models
     partial void OnubicacionChanged();
     partial void OninteresesChanging(string value);
     partial void OninteresesChanged();
-    partial void Onnomb_avatarChanging(string value);
-    partial void Onnomb_avatarChanged();
-    partial void OnrutafisicaChanging(string value);
-    partial void OnrutafisicaChanged();
-    partial void OnrutavirtualChanging(string value);
-    partial void OnrutavirtualChanged();
     partial void OnfechaChanging(System.DateTime value);
     partial void OnfechaChanged();
     partial void OnUserIdChanging(System.Guid value);
@@ -5230,6 +5378,7 @@ namespace proyect.Models
 		
 		public perfil()
 		{
+			this._avatars = new EntitySet<avatar>(new Action<avatar>(this.attach_avatars), new Action<avatar>(this.detach_avatars));
 			this._aspnet_User = default(EntityRef<aspnet_User>);
 			OnCreated();
 		}
@@ -5354,67 +5503,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomb_avatar", DbType="VarChar(200)")]
-		public string nomb_avatar
-		{
-			get
-			{
-				return this._nomb_avatar;
-			}
-			set
-			{
-				if ((this._nomb_avatar != value))
-				{
-					this.Onnomb_avatarChanging(value);
-					this.SendPropertyChanging();
-					this._nomb_avatar = value;
-					this.SendPropertyChanged("nomb_avatar");
-					this.Onnomb_avatarChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rutafisica", DbType="VarChar(250)")]
-		public string rutafisica
-		{
-			get
-			{
-				return this._rutafisica;
-			}
-			set
-			{
-				if ((this._rutafisica != value))
-				{
-					this.OnrutafisicaChanging(value);
-					this.SendPropertyChanging();
-					this._rutafisica = value;
-					this.SendPropertyChanged("rutafisica");
-					this.OnrutafisicaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rutavirtual", DbType="VarChar(250)")]
-		public string rutavirtual
-		{
-			get
-			{
-				return this._rutavirtual;
-			}
-			set
-			{
-				if ((this._rutavirtual != value))
-				{
-					this.OnrutavirtualChanging(value);
-					this.SendPropertyChanging();
-					this._rutavirtual = value;
-					this.SendPropertyChanged("rutavirtual");
-					this.OnrutavirtualChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -5455,6 +5544,19 @@ namespace proyect.Models
 					this.SendPropertyChanged("UserId");
 					this.OnUserIdChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="perfil_avatar", Storage="_avatars", ThisKey="idPerfil", OtherKey="idPerfil")]
+		public EntitySet<avatar> avatars
+		{
+			get
+			{
+				return this._avatars;
+			}
+			set
+			{
+				this._avatars.Assign(value);
 			}
 		}
 		
@@ -5511,6 +5613,18 @@ namespace proyect.Models
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_avatars(avatar entity)
+		{
+			this.SendPropertyChanging();
+			entity.perfil = this;
+		}
+		
+		private void detach_avatars(avatar entity)
+		{
+			this.SendPropertyChanging();
+			entity.perfil = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.publicacion")]
@@ -5523,9 +5637,13 @@ namespace proyect.Models
 		
 		private System.Guid _UserId;
 		
+		private int _idArchivo;
+		
 		private bool _estado;
 		
 		private System.DateTime _fecha;
+		
+		private EntitySet<archivo> _archivos;
 		
 		private EntitySet<articulo> _articulos;
 		
@@ -5551,6 +5669,8 @@ namespace proyect.Models
     partial void OnidPublicacionChanged();
     partial void OnUserIdChanging(System.Guid value);
     partial void OnUserIdChanged();
+    partial void OnidArchivoChanging(int value);
+    partial void OnidArchivoChanged();
     partial void OnestadoChanging(bool value);
     partial void OnestadoChanged();
     partial void OnfechaChanging(System.DateTime value);
@@ -5559,6 +5679,7 @@ namespace proyect.Models
 		
 		public publicacion()
 		{
+			this._archivos = new EntitySet<archivo>(new Action<archivo>(this.attach_archivos), new Action<archivo>(this.detach_archivos));
 			this._articulos = new EntitySet<articulo>(new Action<articulo>(this.attach_articulos), new Action<articulo>(this.detach_articulos));
 			this._comentarios = new EntitySet<comentario>(new Action<comentario>(this.attach_comentarios), new Action<comentario>(this.detach_comentarios));
 			this._cursos = new EntitySet<curso>(new Action<curso>(this.attach_cursos), new Action<curso>(this.detach_cursos));
@@ -5614,6 +5735,26 @@ namespace proyect.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idArchivo", DbType="Int NOT NULL")]
+		public int idArchivo
+		{
+			get
+			{
+				return this._idArchivo;
+			}
+			set
+			{
+				if ((this._idArchivo != value))
+				{
+					this.OnidArchivoChanging(value);
+					this.SendPropertyChanging();
+					this._idArchivo = value;
+					this.SendPropertyChanged("idArchivo");
+					this.OnidArchivoChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Bit NOT NULL")]
 		public bool estado
 		{
@@ -5634,7 +5775,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -5651,6 +5792,19 @@ namespace proyect.Models
 					this.SendPropertyChanged("fecha");
 					this.OnfechaChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="publicacion_archivo", Storage="_archivos", ThisKey="idPublicacion", OtherKey="idPublicacion")]
+		public EntitySet<archivo> archivos
+		{
+			get
+			{
+				return this._archivos;
+			}
+			set
+			{
+				this._archivos.Assign(value);
 			}
 		}
 		
@@ -5797,6 +5951,18 @@ namespace proyect.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_archivos(archivo entity)
+		{
+			this.SendPropertyChanging();
+			entity.publicacion = this;
+		}
+		
+		private void detach_archivos(archivo entity)
+		{
+			this.SendPropertyChanging();
+			entity.publicacion = null;
 		}
 		
 		private void attach_articulos(articulo entity)
@@ -6029,7 +6195,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
@@ -6212,7 +6378,7 @@ namespace proyect.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="DateTime NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha", DbType="Date NOT NULL")]
 		public System.DateTime fecha
 		{
 			get
