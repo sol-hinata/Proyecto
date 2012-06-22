@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "VerTutoriales";
+}
+<div class="container">
+    <div class="sidebar">
+        <ul>
+            <li>
+                <p><span>MODERACION DE CONTENIDOS</span></p>
+                     <ul class="blocklist">
+                        <li>@Html.ActionLink("ARTICULOS", "VerArticulos")</li>
+                        <li>@Html.ActionLink("LIBROS", "VerLibros")</li>   
+                        <li>@Html.ActionLink("TUTORIAL", "VerTutoriales")</li>   
+                        <li>@Html.ActionLink("CURSO","VerCursos")</li>
+                        <li>@Html.ActionLink("COMENTARIOS", "VerComentarios")</li>   
+                     </ul>
+            </li>
+        </ul>
+     </div>
+    <div class="contacto">
+    <h1>LISTA DE TUTORIALES PENDIENTES</h1>
+    @foreach (var item in @ViewBag.lista)
+     {       
+      <li>
+           <h3>IdPublicacion:  @item.idPublicacion </h3>
+           @foreach (var i in @item.titulo)
+           {    
+               <h3>Titulo:  @i.titulo</h3>
+           }    
+           @foreach (var n in @item.nombre)
+           { 
+                <h3>Autor:   @n.UserName</h3>
+           }
+     </li>
+     <li>@Html.ActionLink("Publicar", "PublicarlTutorial", new { id = item.idPublicacion }) </li>
+     <li>@Html.ActionLink("Ver", "VerTutorial", new { id = item.idPublicacion })</li>
+     }
+    </div>
+</div>

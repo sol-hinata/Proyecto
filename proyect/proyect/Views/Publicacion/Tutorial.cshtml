@@ -1,0 +1,40 @@
+﻿@model proyect.Models.Tutorial
+<div class="containercontent">
+@{
+    ViewBag.Title = "Tutorial";
+}
+
+<div class="container">
+<div class="contacto">
+<h1>Tutorial</h1>
+@using (Html.BeginForm()) { 
+@Html.ValidationSummary(true)
+<p class="cursive">Publica tu articulo</p><div class="editor-label">
+@Html.LabelFor(model=>model.titulo)
+</div>
+<div class="editor-field">
+@Html.EditorFor(model=>model.titulo)
+@Html.ValidationMessageFor(model=> model.titulo)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model=>model.nombrecate)
+    </div>
+
+    <div class="editor-label">
+    @Html.TextBoxFor(model => model.nombrecate, new { @style= "width:200px"})
+    @Html.ValidationMessageFor(model=>model.nombrecate)
+    </div>
+<div class="editor-label">
+@Html.LabelFor(model=>model.detalle)
+</div>
+<div class="editor-field">
+@Html.EditorFor(model=>model.detalle)
+@Html.ValidationMessageFor(model=> model.detalle)
+</div>
+<p>
+<input type="submit" value="Enviar"/>
+</p>
+}
+</div>
+</div>
+</div>

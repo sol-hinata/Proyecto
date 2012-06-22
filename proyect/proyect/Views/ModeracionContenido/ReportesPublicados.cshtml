@@ -1,0 +1,20 @@
+﻿@model proyect.Models.Publicacion
+<div class="containercontent">
+@{
+    ViewBag.Title = "ReportesPublicados";
+}
+<h2>ReportesPublicados</h2>
+<ul>  
+     @foreach (var item in @ViewBag.listapublicados)
+     { 
+         <div id="maincontenidoContenidoArticulo">
+          @item.idPublicacion
+       
+         </div>
+         <br />  
+     }       
+
+</ul>
+</div>
+
+

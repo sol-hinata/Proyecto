@@ -1,0 +1,23 @@
+﻿@model proyect.Models.observarcion
+@{
+    ViewBag.Title = "Rechazar";
+}
+<h2>Rechazar</h2>
+<div class="container">
+@ViewBag.ve
+ @using (Html.BeginForm())
+   { 
+   <fieldset>
+       <div class="editor-label">
+            @Html.LabelFor(model => model.observaciones)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.observaciones)
+        </div>
+        <p> 
+        <input type="submit" value="Subir Observacion"/>
+    </p>
+   </fieldset>
+   }
+ </div>
+

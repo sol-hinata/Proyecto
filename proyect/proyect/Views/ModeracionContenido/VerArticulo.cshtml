@@ -1,0 +1,24 @@
+﻿@model proyect.Models.Articulo
+<div class="containercontent">
+<div class="container">
+@{
+    ViewBag.Title = "VerCurso";
+}
+@Html.ActionLink("Volver", "Index", "ModeracionContenido")
+<h2>VerArticulo</h2>
+<ul>  
+     @foreach (var item in @ViewBag.articulo)
+     { 
+         <div id="maincontenidoContenidoArticulo">
+     <li>@item.idPublicacion
+       <h2>@item.titulo</h2>@Html.Raw(@item.detalle)<br />
+     
+       <h3>el: @item.fecha</h3>
+     </li>
+         </div><br /><br />
+     @Html.ActionLink("Publicar", "PublicarTutorial", new { id = item.idPublicacion })   
+     @Html.ActionLink("Rechazar", "Rechazar", new { id = item.idPublicacion }) 
+     }       
+</ul>
+</div>
+</div>

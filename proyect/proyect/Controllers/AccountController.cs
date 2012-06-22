@@ -68,7 +68,14 @@ namespace proyect.Controllers
                         DataClasses1DataContext db = new DataClasses1DataContext();
                         aspnet_User data = db.aspnet_Users.Where(a => a.UserName == model.UserName).ToArray()[0];
                         Session["ids"] = data.UserId;
-                        return RedirectToAction("Index", "Publicacion");
+                        System.Guid IdRol = db.aspnet_UsersInRoles.Where(a => a.UserId == (Guid)Session["ids"]).Select(a => a.RoleId).ToArray()[0];
+                        aspnet_Role rool = db.aspnet_Roles.Where(c => c.RoleId == IdRol).ToArray()[0];
+                        //aspnet_UsersInRole rel = new aspnet_UsersInRole() { RoleId = IdRol, UserId = IdUs };
+                        //aspnet_UsersInRole irol = db.aspnet_UsersInRoles.Where(e => e.UserId == data.UserId).Select(r =>new aspnet_UsersInRole{RoleId= r.RoleId}).ToArray()[0];//db.aspnet_UsersInRoles.Where(b=>b.UserId == (Guid)Session["ids"]).Select(r =>new aspnet_Role {RoleId=r.RoleId}).ToArray()[0];
+                        //aspnet_Role rool = db.aspnet_Roles.Where(ro=>ro.RoleId==irol.RoleId).ToArray()[0];
+                        //ARREGLAR
+                        Session["rol"] = rool.RoleName;
+                        return RedirectToAction("Index", "Home");
                                     
                         
                     }
@@ -241,5 +248,7 @@ namespace proyect.Controllers
             }
         }
         #endregion
+
+        public string RoleName { get; set; }
     }
 }

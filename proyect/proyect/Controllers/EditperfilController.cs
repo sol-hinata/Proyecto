@@ -25,17 +25,41 @@ namespace proyect.Controllers
         public ActionResult Perfil()
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
-            ViewBag.listaimg = db.avatars.ToList();
-
-            System.Guid ddd = (Guid)Session["ids"];
-            if (db.perfils.Where(a => a.UserId == (Guid)Session["ids"]).ToList().Count == 1)
-            {
-                List<PerfilEdit> data = db.perfils.Where(a => a.UserId == (Guid)Session["ids"]).Select(d => new PerfilEdit() { nombre = d.nombre, apellido = d.apellido, fecha = d.fecha, apellidom = d.apellidom, interes = d.intereses, idPerfil = d.idPerfil, ubicacion = d.ubicacion }).ToList();
-
-                PerfilEdit info = data.ToArray()[0];
-                return View(info);
-            }
             
+            //ViewBag.listaimg = db.avatars.ToList();
+            //List<foto> ima = db.perfils.Where(e => e.UserId == (Guid)Session["ids"]).Select(ee => new foto { idPerfil = ee.idPerfil, fot = db.avatars.ToList() }).ToList();
+            //publicacion ip = db.publicacions.Where(b => b.UserId == (Guid)Session["ids"]).OrderByDescending(e => e.idPublicacion).ToArray()[0];
+           
+            if (db.perfils.Where(m => m.UserId == (Guid)Session["ids"]).ToList().Count != 0)//si hay perfil
+            {
+                perfil iper = db.perfils.Where(e => e.UserId == (Guid)Session["ids"]).ToArray()[0];
+                if(db.avatars.Where(j => j.idPerfil == iper.idPerfil).ToList().Count != 0)
+                {//si hay  avatar
+                    avatar av = db.avatars.Where(g => g.idPerfil == iper.idPerfil).OrderByDescending(ee => ee.idAvatar).ToArray()[0];
+                    ViewBag.listaimg = av;
+                    //perfil
+                    System.Guid ddd = (Guid)Session["ids"];
+                    if (db.perfils.Where(a => a.UserId == (Guid)Session["ids"]).ToList().Count == 1)
+                    {
+                        List<PerfilEdit> data = db.perfils.Where(a => a.UserId == (Guid)Session["ids"]).Select(d => new PerfilEdit() { nombre = d.nombre, apellido = d.apellido, fecha = d.fecha, apellidom = d.apellidom, interes = d.intereses, idPerfil = d.idPerfil, ubicacion = d.ubicacion }).ToList();
+
+                        PerfilEdit info = data.ToArray()[0];
+                        return View(info);
+                    }
+                }
+                else{
+                    ViewBag.listaimg = null;
+                    System.Guid ddd = (Guid)Session["ids"];
+                    if (db.perfils.Where(a => a.UserId == (Guid)Session["ids"]).ToList().Count == 1)
+                    {
+                        List<PerfilEdit> data = db.perfils.Where(a => a.UserId == (Guid)Session["ids"]).Select(d => new PerfilEdit() { nombre = d.nombre, apellido = d.apellido, fecha = d.fecha, apellidom = d.apellidom, interes = d.intereses, idPerfil = d.idPerfil, ubicacion = d.ubicacion }).ToList();
+
+                        PerfilEdit info = data.ToArray()[0];
+                        return View(info);
+                    }
+                }
+
+            }
             return View();
             
         }
@@ -48,9 +72,8 @@ namespace proyect.Controllers
             
             if (per.perfils.Where(a => a.UserId == (Guid)Session["ids"]).ToList().Count == 0)
             {
-
                 string sqlTimeAsString = model.fecha.ToString("yyyy-MM-ddTHH:mm:ss.fff");
-                System.Guid IdUs = per.aspnet_Users.Where(a => a.UserName == model.nombre).Select(a => a.UserId).ToArray()[0];
+                System.Guid IdUs = (Guid)Session["ids"];
                 perfil p = new perfil() { nombre = model.nombre, apellido = model.apellido, apellidom = model.apellidom, ubicacion = model.ubicacion, intereses = model.interes, fecha = DateTime.Now, UserId = IdUs, };
                 per.perfils.InsertOnSubmit(p);
                 per.SubmitChanges();

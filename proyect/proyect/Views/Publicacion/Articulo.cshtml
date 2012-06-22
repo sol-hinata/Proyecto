@@ -1,39 +1,53 @@
 ﻿@model proyect.Models.Articulo
+<div class="containercontent">
 @{
     ViewBag.Title = "Articulo";
 }
+<style>
+    #mensaje
+    {
+        width:300px;
+        border:3px solid #ff0000;
+        border-radius:10px;
+        margin:auto;        
+        }
+</style>
+<div class="mensaje">
+@ViewBag.mensaje
+</div>
+<div class="container">
+<div class="contacto">
+@using (Html.BeginForm()) 
+{ 
+       @Html.ValidationSummary(true)
+       <h1>Articulo</h1>
+    <h2>Publica tu articulo</h2>
+    <div class="editor-label">
+        @Html.LabelFor(model=>model.titulo)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model=>model.titulo)
+        @Html.ValidationMessageFor(model=> model.titulo)
+    </div>
+    <div class="editor-label">
+    @Html.LabelFor(model=>model.nombrecate)
+    </div>
 
-<h2>Articulo</h2>
-@using (Html.BeginForm()) { 
-@Html.ValidationSummary(true)
-<fieldset>
-<legend>Publica tu articulo</legend>
-<div class="editor-label">
-@Html.LabelFor(model=>model.titulo)
-</div>
-<div class="editor-field">
-@Html.EditorFor(model=>model.titulo)
-@Html.ValidationMessageFor(model=> model.titulo)
-</div>
-
-
-<div class="editor-label">
-@Html.LabelFor(model=>model.puntuacion)
-</div>
-<div class="editor-field">
-@Html.EditorFor(model=>model.puntuacion)
-@Html.ValidationMessageFor(model=> model.puntuacion)
-</div>
-
-<div class="editor-label">
-@Html.LabelFor(model=>model.detalle)
-</div>
-<div class="editor-field">
-@Html.EditorFor(model=>model.detalle)
-@Html.ValidationMessageFor(model=> model.detalle)
-</div>
-<p>
-<input type="submit" value="Enviar"/>
-</p>
-</fieldset>
+    <div class="editor-label">
+    @Html.TextBoxFor(model => model.nombrecate, new { @style= "width:200px"})
+    @Html.ValidationMessageFor(model=>model.nombrecate)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model=>model.detalle)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model=>model.detalle)
+        @Html.ValidationMessageFor(model=> model.detalle)
+    </div>
+    <p>
+        <input type="submit" value="Enviar"/>
+    </p>
 }
+    </div>
+</div>
+</div>

@@ -1,0 +1,25 @@
+﻿<div class="containercontent">
+@{
+    ViewBag.Title = "VerLibro";
+}
+<h2>VerLibro</h2>
+ @foreach (var item in @ViewBag.verlibro)
+     {       
+      <li>
+       @item.nombre
+       @foreach (var libro in item.libro) 
+       {
+            @libro.titulo<br/>
+            @libro.Autor<br/>
+            @libro.Annio_pub<br/>
+            @libro.descripcion<br/>
+       }
+       @foreach (var archivos in item.archivo)
+       {
+       <img src='@archivos.rutavirtual' alt="@archivos.rutavirtual" height="60" width="50"/> 
+       }
+     </li>
+     @Html.ActionLink("Publicar", "PublicarLibro", new { id = item.idPublicacion })   
+     @Html.ActionLink("Rechazar", "Rechazar", new { id = item.idPublicacion }) 
+     }
+  </div>

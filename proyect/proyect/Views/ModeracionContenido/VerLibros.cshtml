@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "VerLibros";
+}
+     @Html.ActionLink("ARTICULOS","VerArticulos")   
+     @Html.ActionLink("LIBROS","VerLibros")   
+     @Html.ActionLink("TUTORIAL","VerTutoriales")   
+     @Html.ActionLink("CURSO","VerCursos")   
+     @Html.ActionLink("COMENTARIOS","VerComentarios")
+<h2>LISTA DE LIBROS PENDIENTES</h2>
+<h3>Titulo   Autor   fecha</h3>
+     @foreach (var item in @ViewBag.lista)
+     {       
+      <li>
+       @item.nombre
+       @foreach (var libro in item.libro) 
+       {
+            @libro.titulo
+       } 
+        <img src='@item.rutavirtual' alt="@item.rutavirtual" height="60" width="50"/> 
+       
+     </li>
+     @Html.ActionLink("Publicar", "PublicarLibro", new { id = item.idPublicacion }) 
+     @Html.ActionLink("Ver", "VerLibro", new { id = item.idPublicacion })   
+     }

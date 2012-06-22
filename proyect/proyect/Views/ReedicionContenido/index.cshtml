@@ -1,0 +1,25 @@
+﻿@model proyect.Models.Publicacion
+@{
+    ViewBag.Title = "index";
+}
+
+<h2>Publicaciones no aceptadas</h2>
+<ul>  
+     @foreach (var item in @ViewBag.lista)
+     { 
+         <div id="maincontenidoContenidoArticulo">
+          @item.idPublicacion<br/>
+          @if (@item.observaciones != null)
+          {
+             @item.observaciones<br/>     
+          }
+          else
+          {
+              <h6>Pendiente</h6><br/>
+          }
+          @item.fecha<br/>
+          @Html.ActionLink("Reeditar", "Reeditar", new { id = item.idPublicacion })   
+          @Html.ActionLink("Borrar", "Borrar", new { id = item.idPublicacion }) 
+         </div><br/>  
+     }       
+</ul>

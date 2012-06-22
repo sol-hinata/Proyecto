@@ -1,23 +1,36 @@
 ﻿@model proyect.Models.PerfilEdit
+@*<div class="containercontent">*@
 @{
     ViewBag.Title = "Perfil";
 }
-
-
-<h2>Perfil</h2>
+<div class="container">
+<div class="contacto">
+<h1>Perfil</h1>
+<p> &#10004;Ingrese sus datos para actualizar su Perfil</p>
 @using (Html.BeginForm("SubirImg", "Editperfil", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{<input name="uploadFile" type="file"/>
+{
+    <div>
+    <input name="uploadFile" type="file"/>
     <input type="submit" value="subirImagen"/>
+    </div>
 }
-<ul>@foreach(var item in @ViewBag.listaimg){
-<li><img src='@item.rutavirtual' alt="@item.rutavirtual" height="60" width="50"/></li>
-}
-</ul>
+   @if (@ViewBag.listaimg == null)
+   { <ul>    
+        <img src='/Imagenes/noavatar.jpg' alt="/Imagenes/noavatar.jpg" height="60" width="50"/>
+     </ul>
+   }
+   else
+   {
+    <ul>
+        
+        <img src='@ViewBag.listaimg.rutavirtual' alt="@ViewBag.listaimg.rutavirtual" height="60" width="50"/>
+    </ul>
+       
+   }
+ 
 @using (Html.BeginForm())
 { 
-    <div>
-    <fieldset>
-    <legend>Modifica tus datos</legend>
+    
     <div class="editor-label">
     @Html.LabelFor(m => m.nombre)
     </div>
@@ -48,11 +61,9 @@
     <div class="editor-field">
     @Html.TextBoxFor(m => m.ubicacion)
     </div>
-    
+    <div>
     <input type="submit" value="Guardar"/>
-    <p>
-    </p>
-    </fieldset>
     </div>
 }
-
+</div>
+</div>

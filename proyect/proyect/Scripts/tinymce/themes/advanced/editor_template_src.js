@@ -1237,8 +1237,8 @@
 
 			ed.windowManager.open({
 				url : this.url + '/about.htm',
-				width : 480,
-				height : 380,
+				width : 280,
+				height : 180,
 				inline : true
 			}, {
 				theme_url : this.url

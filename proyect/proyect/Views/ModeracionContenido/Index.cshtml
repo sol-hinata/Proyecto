@@ -1,0 +1,23 @@
+﻿<div class="containercontent">
+@{
+    ViewBag.Title = "Index";
+}
+ <div id="container">
+    <div id="slider">
+        <div class="container">
+            <ul class="slides">
+                <li>
+                    <div class="thumbholder"><img src="@Url.Content("~/Content/images/f7.png")" width="350" height="220" alt="I Mac Immagine Disegno" /></div>
+                    <div class="txtholder">
+                        <h3 class="cursive">MODERADOS DE CONTENIDO</h3>
+                            @Html.ActionLink("ARTICULOS", "VerArticulos")
+                            @Html.ActionLink("LIBROS", "VerLibros")  
+                            @Html.ActionLink("TUTORIAL", "VerTutoriales")   
+                            @Html.ActionLink("CURSO","VerCursos")
+                            @Html.ActionLink("COMENTARIOS", "VerComentarios")
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

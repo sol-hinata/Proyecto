@@ -16,6 +16,7 @@ namespace proyect.Models
         public string ubicacion { get; set; }
         public System.DateTime fecha { get; set; }
         public System.Guid id { get; set; }
+        public int estado { get; set; }
     }
     public class Avatar
     {
@@ -25,5 +26,13 @@ namespace proyect.Models
         public System.DateTime fecha { get; set; }
         public System.Guid id { get; set; }
 
+    }
+    public class foto {
+        public System.Guid id { get; set; }
+        public int idPerfil { get; set; }
+        public string ava { get; set; }
+        public string rutafisica { get; set; }
+        public List<avatar> fot { set; get; }
+    
     }
 }

@@ -43,6 +43,9 @@ namespace proyect.Models
 
         public string CaptchaCode { get; set; }
 
+        public string RoleName { get; set; }
+        public System.Guid RoleId { get; set; }
+
     }
 
     public class RegisterModel

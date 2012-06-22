@@ -1,4 +1,4 @@
-﻿body 
+﻿/*body 
 {   
     background:#666 ;
     color:#000000;
@@ -78,7 +78,7 @@ h5, h6 {
     font-size: 1em;
 }
 /* el contenido dentro de la pagina */
-.page {
+/*.page {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -159,7 +159,7 @@ footer,
     -moz-border-radius: 0 0 4px 4px;
 }
 /* aqui esta el menu*/
-ul#menu {
+/*ul#menu {
     border-bottom: 1px #666666 solid;
     padding: 0 0 2px;
     position: relative;
@@ -185,7 +185,7 @@ ul#menu li#greeting {
     color: #66cccc;
 }
 /* aqui esta el color de letra  del menu*/
-ul#menu li a {
+/*ul#menu li a {
     padding: 10px 20px;
     font-weight: bold;
     text-decoration: none;
@@ -218,7 +218,7 @@ ul#menu li.selected a {
 /* FORM LAYOUT ELEMENTS   
 ----------------------------------------------------------*/
 
-fieldset {
+/*fieldset {
     border: 1px solid #009999;
     padding: 0 1.4em 1.4em 1.4em;
     margin: 0 0 1.5em 0;
@@ -257,7 +257,7 @@ input[type="submit"] {
 /* TABLE
 ----------------------------------------------------------*/
 
-table {
+/*table {
     border: solid 1px #e8eef4;
     border-collapse: collapse;
 }
@@ -276,7 +276,7 @@ table th {
 
 /* MISC  
 ----------------------------------------------------------*/
-.clear {
+/*.clear {
     clear: both;
 }
 
@@ -320,7 +320,7 @@ div#title {
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
-.field-validation-error {
+/*.field-validation-error {
     color: #ff0000;
 }
 
@@ -344,7 +344,7 @@ div#title {
 
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
-.display-label, 
+/*.display-label, 
 .editor-label {
     margin: 1em 0 0 0;
 }
@@ -371,7 +371,7 @@ Uploadify
 Copyright (c) 2012 Reactive Apps, Ronnie Garcia
 Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
 */
-
+/*
 .uploadify {
 	position: relative;
 	margin-bottom: 1em;
@@ -457,5 +457,270 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 	background-color: #0099FF;
 	height: 3px;
 	width: 1px;
+}*/
+
+
+
+
+/*aumentado por taty*/
+/*contenedores*/
+#content {
+	float: left;
+	width: 655px;
 }
 
+.box { 
+	margin: 0;
+	padding: 0 5px;
+}
+
+/*para ponerlo como submenu*/
+.sidebar {
+	width: 280px;
+	padding: 25px 0 0;
+	float: right;
+}
+
+
+.sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar ul li {
+	margin-bottom: 20px;
+	line-height: 1.9em;
+}
+
+.sidebar li ul {
+	padding: 10px;
+	background-color: #e0e0e0;
+}
+
+.sidebar li ul li {
+	display: block;
+	border-top: none;
+	padding: 6px 2px;
+	margin: 0;
+	line-height: 1.5em;
+	font-size: 13px;
+	border: none;
+}
+
+.sidebar li ul li a {
+	font-weight: normal;
+	color: #666;
+}
+
+.sidebar li ul li a:hover {
+	color: #04427B;
+}
+
+.sidebar li ul.blocklist {
+	padding: 0;
+}
+
+.sidebar li ul.blocklist li {
+	padding: 0;
+	display: inline;
+}
+
+.sidebar li ul.blocklist li a {
+	display: block;
+	border-bottom:1px solid #e0e0e0;
+	padding: 8px 10px;
+	text-decoration: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.sidebar li ul.blocklist li a:hover {
+	background-color: #ccc;
+	color: #111;
+}
+
+
+
+.sidebar h4  {
+	color: #fff;
+	font-family: Lucida, "Lucida Sans", Geneva, Arial, sans-serif;
+	font-size: 13px;
+	letter-spacing: -0.5px;
+	border-bottom: 1px solid #02213B;
+	text-transform:uppercase;
+	margin: 0;
+	line-height: 1.9em;
+	padding: 5px 5px 5px 10px;
+	font-weight: bold;
+	background: #333 url('images/h4-bg.png') repeat-x center;
+}
+
+
+
+/*para los botones*/
+
+.button {
+	background: #043b34;
+	background: -webkit-gradient(linear, left top, left bottom, from(#18abf0), to(#043b34));
+	background: -webkit-linear-gradient(top, #18abf0, #043b34);
+	background: -moz-linear-gradient(top, #18abf0, #043b34);
+	background: -ms-linear-gradient(top, #18abf0, #043b34);
+	background: -o-linear-gradient(top, #18abf0, #043b34);
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	color: white;
+	font-size: 11px;
+	font-family: Georgia, serif;
+	text-decoration: none;
+	vertical-align: middle;
+	float: right;
+	height: 20px;
+	width: 70px;
+	padding-top: 2px;
+	padding-right: 4px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	line-height: 20px;
+	text-align: center;
+   }
+.button:hover {
+   border-top-color: #0771b3;
+   background: #0771b3;
+   color: #ccc;
+   }
+.button:active {
+   border-top-color: #db0d8c;
+   background: #db0d8c;
+   
+   }
+.button   a:hover      {
+	color: #DD0000;
+}
+
+/*formulario*/
+.contacto{
+    border: 1px solid #CED5D7;
+    border-radius: 6px;
+    padding: 45px 45px 20px;
+    margin-top: 50px;
+    background-color: white;
+    box-shadow: 0px 5px 10px #B5C1C5, 0 0 0 10px #EEF5F7 inset;
+}
+
+.contacto label{
+    display: block; /* esto es para que el label se sobreponga a la caja de texto */
+    font-weight: bold;
+}
+.contacto div{
+    margin-bottom: 15px; /* esto los separara un poco */
+}
+
+.contacto input[type='text'], .contacto textarea{
+    padding: 7px 6px;
+    width: 294px; /* una longitud definida */
+    border: 1px solid #CED5D7;
+    resize: none; /* esta propiedad es para que el textarea no sea redimensionable */
+    box-shadow:0 0 0 3px #EEF5F7;
+    margin: 5px 0;
+}
+.contacto input[type='text']:focus, .contacto textarea:focus{
+    outline: none; /* reset especifico para Chrome/Safari */
+    box-shadow:0 0 0 3px #dde9ec;
+}
+
+.contacto input[type='submit']{
+    border: 1px solid #CED5D7;
+    box-shadow:0 0 0 3px #EEF5F7;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px white;
+ 
+    background: #e4f1f6; /* fallback para navegadores que no soporten degradados */
+    background: -moz-linear-gradient(top, #e4f1f6 0%, #cfe6ef 100%);
+    background: -webkit-linear-gradient(top, #e4f1f6 0%,#cfe6ef 100%);
+}
+.contacto input[type='submit']:hover{
+    background: #edfcff;
+    background: -moz-linear-gradient(top, #edfcff 0%, #cfe6ef 100%);
+    background: -webkit-linear-gradient(top, #edfcff 0%,#cfe6ef 100%);
+}
+.contacto input[type='submit']:active{
+    background: #cfe6ef;
+    background: -moz-linear-gradient(top, #cfe6ef 0%, #edfcff 100%);
+    background: -webkit-linear-gradient(top, #cfe6ef 0%,#edfcff 100%);
+}
+
+/*articulos*/
+
+.square {
+	display: block;
+	padding: 5px;
+	width: 600px;
+	position: relative;
+	margin-top: 30px;
+	margin-bottom: 30px;
+
+}
+.square img {
+-moz-border-radius:4px;
+-webkit-border-radius:4px;
+border-radius:4px;
+-moz-box-shadow:0px 0px 2px #000000;
+-webkit-box-shadow:0px 0px 2px #000000;
+box-shadow:0px 0px 2px #000000;
+-moz-transition: all 400ms linear 0s;
+}
+.square p {
+	float: right;
+	width: 450px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: 20px;
+	color: #444444;
+	font-weight: normal;
+	text-shadow: 1px -1px #fff;
+	background-color: #EEEEEE;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	border-radius:8px;
+	-moz-box-shadow:0px 0px 4px #000000;
+	-webkit-box-shadow:0px 0px 4px #000000;
+	box-shadow:0px 0px 4px #000000;
+	padding: 5px;
+	margin-top: 0px;
+	margin-right: 5px;
+	margin-bottom: 0px;
+	margin-left: 5px;
+
+}
+.square h3 {
+	margin-bottom: 10px;
+	text-align: left;
+	font-family: serif;
+	font-size: 16px;
+	font-style: italic;
+	font-weight: bold;
+	color: #770000;
+	text-shadow: 1px 1px #ccc;
+}
+aside {
+	width: 300px;
+	margin-top: 15px;
+	float: right;
+	display: block;
+	line-height: 20px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #111111;
+	text-shadow: 1px -1px #FAFAFA;
+}

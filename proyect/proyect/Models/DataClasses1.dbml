@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="project" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=SOLEDAD-VAIO\SQLXPRESS;Initial Catalog=project;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ApplicationServices" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="proyect" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=OWNER-HP\SQLEXPRESS;Initial Catalog=proyect;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ApplicationServices" Provider="System.Data.SqlClient" />
   <Table Name="dbo.archivo" Member="archivos">
     <Type Name="archivo">
       <Column Name="idArchivo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -12,12 +12,11 @@
   </Table>
   <Table Name="dbo.articulo" Member="articulos">
     <Type Name="articulo">
-      <Column Name="idArticulo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="titulo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="detalle" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="puntuacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="publicacion_articulo" Member="publicacion" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="publicacion" IsForeignKey="true" />
     </Type>
   </Table>
@@ -132,7 +131,7 @@
       <Association Name="aspnet_User_aspnet_Profile" Member="aspnet_Profile" ThisKey="UserId" OtherKey="UserId" Type="aspnet_Profile" Cardinality="One" />
       <Association Name="aspnet_User_aspnet_UsersInRole" Member="aspnet_UsersInRoles" ThisKey="UserId" OtherKey="UserId" Type="aspnet_UsersInRole" />
       <Association Name="aspnet_User_comentario" Member="comentarios" ThisKey="UserId" OtherKey="UserId" Type="comentario" />
-      <Association Name="aspnet_User_karma" Member="karmas" ThisKey="UserId" OtherKey="UserId" Type="karma" />
+      <Association Name="aspnet_User_karma" Member="karma" ThisKey="UserId" OtherKey="UserId" Type="karma" Cardinality="One" />
       <Association Name="aspnet_User_karma2" Member="karma2s" ThisKey="UserId" OtherKey="UserId" Type="karma2" />
       <Association Name="aspnet_User_perfil" Member="perfils" ThisKey="UserId" OtherKey="UserId" Type="perfil" />
       <Association Name="aspnet_User_publicacion" Member="publicacions" ThisKey="UserId" OtherKey="UserId" Type="publicacion" />
@@ -199,11 +198,10 @@
   </Table>
   <Table Name="dbo.curso" Member="cursos">
     <Type Name="curso">
-      <Column Name="idCurso" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="titulo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="detalle" Type="System.Data.Linq.Binary" DbType="VarBinary(1000) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="detalle" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="puntuacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="publicacion_curso" Member="publicacion" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="publicacion" IsForeignKey="true" />
     </Type>
@@ -220,8 +218,7 @@
   </Table>
   <Table Name="dbo.karma" Member="karmas">
     <Type Name="karma">
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="idKarma" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="detalle" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
@@ -230,20 +227,23 @@
   </Table>
   <Table Name="dbo.karma2" Member="karma2s">
     <Type Name="karma2">
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="aspnet_User_karma2" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
       <Association Name="publicacion_karma2" Member="publicacion" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="publicacion" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.libro" Member="libros">
     <Type Name="libro">
-      <Column Name="idLibro" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="titulo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="detalle" Type="System.Data.Linq.Binary" DbType="VarBinary(1000) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="puntuacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Autor" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Annio_pub" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rutafisica" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="rutavirtual" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="detalle" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
       <Association Name="publicacion_libro" Member="publicacion" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="publicacion" IsForeignKey="true" />
     </Type>
   </Table>
@@ -255,6 +255,7 @@
       <Column Name="apellidom" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="ubicacion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="intereses" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Association Name="perfil_avatar" Member="avatars" ThisKey="idPerfil" OtherKey="idPerfil" Type="avatar" />
@@ -266,25 +267,26 @@
       <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="idArchivo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="observaciones" Type="System.String" DbType="VarChar(700)" CanBeNull="true" />
       <Association Name="publicacion_archivo" Member="archivos" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="archivo" />
-      <Association Name="publicacion_articulo" Member="articulos" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="articulo" />
+      <Association Name="publicacion_articulo" Member="articulo" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="articulo" Cardinality="One" />
       <Association Name="publicacion_comentario" Member="comentarios" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="comentario" />
-      <Association Name="publicacion_curso" Member="cursos" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="curso" />
+      <Association Name="publicacion_curso" Member="curso" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="curso" Cardinality="One" />
       <Association Name="publicacion_indice" Member="indices" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="indice" />
       <Association Name="publicacion_karma2" Member="karma2s" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="karma2" />
-      <Association Name="publicacion_libro" Member="libros" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="libro" />
+      <Association Name="publicacion_libro" Member="libro" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="libro" Cardinality="One" />
       <Association Name="publicacion_publicacion_categoria" Member="publicacion_categorias" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="publicacion_categoria" />
-      <Association Name="publicacion_reporte" Member="reportes" ThisKey="idPublicacion" OtherKey="idPublica" Type="reporte" />
-      <Association Name="publicacion_tutorial" Member="tutorials" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="tutorial" />
+      <Association Name="publicacion_reporte" Member="reportes" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="reporte" />
+      <Association Name="publicacion_tutorial" Member="tutorial" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="tutorial" Cardinality="One" />
       <Association Name="aspnet_User_publicacion" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.publicacion_categoria" Member="publicacion_categorias">
     <Type Name="publicacion_categoria">
-      <Column Name="idCategoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idCategoria" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="categoria_publicacion_categoria" Member="categoria" ThisKey="idCategoria" OtherKey="idCategoria" Type="categoria" IsForeignKey="true" />
       <Association Name="publicacion_publicacion_categoria" Member="publicacion" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="publicacion" IsForeignKey="true" />
     </Type>
@@ -292,19 +294,18 @@
   <Table Name="dbo.reporte" Member="reportes">
     <Type Name="reporte">
       <Column Name="idReporte" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idPublica" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="descripcion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="publicacion_reporte" Member="publicacion" ThisKey="idPublica" OtherKey="idPublicacion" Type="publicacion" IsForeignKey="true" />
+      <Association Name="publicacion_reporte" Member="publicacion" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="publicacion" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tutorial" Member="tutorials">
     <Type Name="tutorial">
-      <Column Name="idTutorial" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idPublicacion" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="titulo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="fecha" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="detalle" Type="System.Data.Linq.Binary" DbType="VarBinary(1000) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="detalle" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
       <Column Name="puntuacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="publicacion_tutorial" Member="publicacion" ThisKey="idPublicacion" OtherKey="idPublicacion" Type="publicacion" IsForeignKey="true" />
     </Type>

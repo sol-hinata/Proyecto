@@ -25,3 +25,21 @@ H:\sprint\proyect\proyect\bin\EntityFramework.xml
 H:\sprint\proyect\proyect\obj\Debug\ResolveAssemblyReference.cache
 H:\sprint\proyect\proyect\obj\Debug\proyect.dll
 H:\sprint\proyect\proyect\obj\Debug\proyect.pdb
+C:\Users\Owner\Desktop\ULTIMOOO\proyect\proyect\bin\proyect.dll
+C:\Users\Owner\Desktop\ULTIMOOO\proyect\proyect\bin\proyect.pdb
+C:\Users\Owner\Desktop\ULTIMOOO\proyect\proyect\bin\BotDetect.dll
+C:\Users\Owner\Desktop\ULTIMOOO\proyect\proyect\bin\BotDetect.Web.UI.Mvc.dll
+C:\Users\Owner\Desktop\ULTIMOOO\proyect\proyect\bin\EntityFramework.dll
+C:\Users\Owner\Desktop\ULTIMOOO\proyect\proyect\bin\EntityFramework.xml
+C:\Users\Owner\Desktop\ULTIMOOO\proyect\proyect\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Owner\Desktop\ULTIMOOO\proyect\proyect\obj\Debug\proyect.dll
+C:\Users\Owner\Desktop\ULTIMOOO\proyect\proyect\obj\Debug\proyect.pdb
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\proyect\proyect\bin\proyect.dll
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\proyect\proyect\bin\proyect.pdb
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\proyect\proyect\bin\BotDetect.dll
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\proyect\proyect\bin\BotDetect.Web.UI.Mvc.dll
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\proyect\proyect\bin\EntityFramework.dll
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\proyect\proyect\bin\EntityFramework.xml
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\proyect\proyect\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\proyect\proyect\obj\Debug\proyect.dll
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\proyect\proyect\obj\Debug\proyect.pdb

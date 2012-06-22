@@ -2,20 +2,26 @@
 @{
     ViewBag.Title = "Articulos";
 }
-<h2>Lista de Articulos</h2> 
-<ul>  
-     @foreach (var item in @ViewBag.lista)
-     { 
-         <div id="maincontenidoContenidoArticulo">
-     <li>
-       <h2>@item.titulo</h2>@item.detalle<br />
-       @foreach (var i in @item.nombre) { 
-       <li><h3>Subido por: @i.UserName</h3></li>
-       }
-       <h3>el: @item.fecha</h3>
-     </li>
-         </div><br /><br />
-     }       
-  
-</ul>
-
+<div class="container">
+    <h1>Lista de Articulos</h1>
+    <div id="slider">
+        <div class="container">
+            <ul class="slides">
+            @foreach (var item in @ViewBag.lista)
+            { 
+                <li>
+                    <div class="thumbholder"><img src="@Url.Content("~/Content/images/f7.png")" width="350" height="220" alt="I Mac Immagine Disegno" /></div>
+                    <div class="txtholder">
+                          @item.idPublicacion
+                       <h3>@item.titulo</h3>
+                        <div>@Html.Raw(@item.detalle)</div>
+                         <h3>@item.nombre</h3>
+                         @item.idus
+                    
+                    </div>
+                </li>
+            }
+            </ul>
+         </div>
+    </div>
+</div>
